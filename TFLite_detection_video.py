@@ -19,7 +19,6 @@ import cv2
 import numpy as np
 import sys
 import importlib.util
-from google.colab.patches import cv2_imshow
 import colorsys
 import matplotlib.pyplot as plt
 import tensorflow as tf
