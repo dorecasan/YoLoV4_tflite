@@ -40,6 +40,8 @@ parser.add_argument('--video', help='Name of the video file',
                     default='test.mp4')
 parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
                     action='store_true')
+parser.add_argument('--input_size', help='original size of image',
+                    default=608)
 
 args = parser.parse_args()
 
@@ -49,6 +51,7 @@ LABELMAP_NAME = args.labels
 VIDEO_NAME = args.video
 min_conf_threshold = float(args.threshold)
 use_TPU = args.edgetpu
+input_size = args.input_size
 
 ANCHORS = np.array([12,16, 19,36, 40,28, 36,75, 76,55, 72,146, 142,110, 192,243, 459,401]).reshape(3,3,2)
 STRIDES = [8, 16, 32]
@@ -303,7 +306,6 @@ while(video.isOpened()):
 
     # Acquire frame and resize to expected shape [1xHxWx3]
     ret, frame = video.read()
-    input_size = 608
     if not ret:
       print('Reached the end of the video!')
       break
@@ -331,7 +333,7 @@ while(video.isOpened()):
     print(info)
     cv2.namedWindow("result", cv2.WINDOW_AUTOSIZE)
     result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-    cv2_imshow("result", result)
+    cv.imshow("result", result)
 
     # Press 'q' to quit
     if cv2.waitKey(1) == ord('q'):
