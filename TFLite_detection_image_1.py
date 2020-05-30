@@ -311,15 +311,6 @@ interpreter.allocate_tensors()
 # Get model details
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
-height = input_details[0]['shape'][1]
-width = input_details[0]['shape'][2]
-
-floating_model = (input_details[0]['dtype'] == np.float32)
-
-input_mean = 127.5
-input_std = 127.5
-
-
 
 
 # Loop over every image and perform detection
@@ -357,8 +348,8 @@ for image_path in images:
     cv2.imwrite('Object_detector_1.jpg', image)
 
     # Press any key to continue to next image, or press 'q' to quit
-    #if cv2.waitKey(0) == ord('q'):
-     #   break
+    if cv2.waitKey(0) == ord('q'):
+        break
 
 # Clean up
 cv2.destroyAllWindows()
