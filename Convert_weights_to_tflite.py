@@ -43,7 +43,7 @@ cd '/content'
 !mkdir yolov4
 
 # %%
-!mv '/content/tensorflow-yolov4-tflite/data/yolov4.tflite' '/content/tflite1/yolov4'
+!mv '/content/tensorflow-yolov4-tflite/data/detect.tflite' '/content/tflite1/yolov4'
 
 # %%
 pwd
