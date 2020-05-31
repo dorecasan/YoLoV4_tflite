@@ -158,7 +158,7 @@ def real_time_object_detection(interpreter, colors):
 
 if __name__ == '__main__':
     # Load TFLite model and allocate tensors.
-    interpreter = tf.lite.Interpreter(model_path="model_data/ssdlite_mobilenet_v2.tflite")
+    interpreter = tf.lite.Interpreter(model_path="ssd_model/ssdlite_mobilenet_v2.tflite")
     interpreter.allocate_tensors()
 
     # Get input and output tensors.
@@ -166,9 +166,9 @@ if __name__ == '__main__':
     output_details = interpreter.get_output_details()
 
     # label
-    class_names = read_classes('model_data/coco_classes.txt')
+    class_names = read_classes('ssd_model/class_for_ssd.txt')
     # Generate colors for drawing bounding boxes.
     colors = generate_colors(class_names)
             
-    image_object_detection(interpreter, colors)
-    #real_time_object_detection(interpreter, colors)
+    #image_object_detection(interpreter, colors)
+    real_time_object_detection(interpreter, colors)
